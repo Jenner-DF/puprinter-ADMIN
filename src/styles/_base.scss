@@ -1,0 +1,54 @@
+$color-primary: #f9b957;
+$color-secondary: #e0ddd9;
+
+$box-shadow-color: #b7b7b7;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  // font-size: 50%;
+}
+body {
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+  line-height: 1;
+  font-weight: 400;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow-x: hidden;
+}
+main {
+  min-height: calc(100vh - 18rem);
+}
+.container {
+  max-width: 144rem;
+  margin: 0 auto;
+}
+.header {
+  height: 9rem;
+  padding: 1rem 0;
+}
+.errormsg {
+  color: red;
+  font-size: 1.6rem;
+  text-align: center;
+  padding: 1rem;
+}
+.hidden {
+  display: none;
+}
+img {
+  width: 25rem;
+}

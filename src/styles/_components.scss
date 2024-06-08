@@ -1,0 +1,101 @@
+.spinner {
+  margin: 5rem auto;
+  text-align: center;
+  svg {
+    height: 6rem;
+    width: 6rem;
+    fill: $color-primary;
+    animation: rotate 2s infinite linear;
+  }
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-family: inherit;
+  width: 100%;
+  border: none;
+  padding: 20px 1rem;
+  background-color: $color-secondary;
+  border-radius: 5px;
+  &__main {
+    background-color: $color-primary;
+  }
+  &:hover,
+  &:active {
+    filter: brightness(95%);
+  }
+}
+dialog {
+  margin: auto;
+  width: 25rem;
+  height: 15rem;
+  padding: 3rem 3rem;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px $box-shadow-color;
+  overflow: hidden;
+  p {
+    font-weight: 600;
+    font-size: 1.6rem;
+    width: 100%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+  }
+  img {
+    padding-top: 2rem;
+    display: block;
+    margin: auto;
+    height: 100%;
+    width: 70%;
+  }
+  .modal {
+    &__img {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 65%;
+      // width: 100%;
+      gap: 10px;
+      &_text {
+        font-size: 4.4rem;
+        &_long {
+          font-size: 1.6rem;
+        }
+        &_wallet {
+          font-size: 1.4rem;
+        }
+      }
+      .code {
+        border-bottom: 2px solid black;
+      }
+    }
+    &__btns {
+      display: flex;
+      gap: 2rem;
+      .btn {
+        font-weight: 600;
+        padding: 6px 0;
+      }
+      .spinner {
+        svg {
+          width: 2.5rem;
+          height: 2.5rem;
+        }
+        margin-top: 3rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+  margin: 2rem auto;
+  border-radius: 15px;
+
+  // box-shadow: 0 3px 2px $box-shadow-color;
+  // overflow: hidden;
+}
+.header__login {
+  &_logo {
+    // padding: 1rem;
+    width: 35rem;
+    cursor: pointer;
+  }
+}
+
+.panel_user {
+  max-width: 60vw;
+  justify-content: space-between;
+  padding: 2rem;
+}
+
+.nav {
+  // width: 50%;
+  &__list {
+    display: flex;
+    gap: 1rem;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    list-style: none;
+  }
+  &__btn {
+    font-family: inherit;
+    border: none;
+    font-size: 1.6rem;
+    background-color: inherit;
+    background-color: none;
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <script type="module" src="./src/js/controller.js"></script>
+    <link
+      rel="shortcut icon"
+      href="./src/img/favicon-32x32.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="./src/styles/main.scss" />
+    <title>PUPrinter</title>
+  </head>
+  <body></body>
+</html>
+
+<!-- <div class="admin__controls">
+  <div class="admin__control">
+    <div class="admin__control_name">
+      <label for="deleteDoc">Delete Document:</label>
+    </div>
+    <div class="admin__control_input">
+      <input
+        type="text"
+        name="deleteDoc"
+        id="deleteDoc"
+        placeholder="Document ID"
+      />
+    </div>
+    <div class="admin__control_btn">
+      <button class="btn deleteDoc">Delete</button>
+    </div>
+  </div>
+  <div class="admin__control">
+    <div class="admin__control_name">
+      <label for="searchUserDoc">Search User Documents:</label>
+    </div>
+    <div class="admin__control_input">
+      <input
+        type="text"
+        name="searchUserDoc"
+        id="searchUserDoc"
+        placeholder="User ID"
+      />
+    </div>
+    <div class="admin__control_btn">
+      <button class="btn searchUserDoc">Search</button>
+    </div>
+  </div>
+  <div class="admin__control">
+    <div class="admin__control_name">
+      <label for="userTopup">Top-up:</label>
+    </div>
+    <div class="admin__control_input">
+      <form class="topup">
+        <input
+        type="text"
+        name="userTopup"
+        id="userTopup"
+        placeholder="User ID"
+        required
+      />
+      <input type="number" name="topupValue" required placeholder="peso">
+      <button class="btn userTopup">Top-up</button>
+      </form>
+     
+    </div>
+    <div class="admin__control_btn">
+    </div>
+  </div>
+</div>
+<div class="statusText">This is Error!</div>
+
+  <div class="container table-container">
+    <table id="data-table">
+      <thead>
+        <tr>
+          <th>Filename</th>
+          <th class="center-text">File Pincode</th>
+          <th class="center-text">Paper Size</th>
+          <th class="center-text">Timestamp</th>
+          <th class="center-text">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-overflow">FERN.pdf</td>
+          <td class="center-text">0005</td>
+          <td class="center-text capitalize">short</td>
+          <td class="center-text">01-29-2024</td>
+          <td class="center-text">Ready for Printing</td>
+        </tr>
+        <tr>
+          <td class="text-overflow">bondad_teluk.pdf</td>
+          <td class="center-text">0004</td>
+          <td class="center-text capitalize">short</td>
+          <td class="center-text">01-29-2024</td>
+          <td class="center-text">Ready for Printing</td>
+        </tr>
+        <tr>
+          <td class="text-overflow">
+            Chapter 6 Exercises - Transfer Function.pdf
+          </td>
+          <td class="center-text">0003</td>
+          <td class="center-text capitalize">short</td>
+          <td class="center-text">01-29-2024</td>
+          <td class="center-text">Ready for Printing</td>
+        </tr>
+        <tr>
+          <td class="text-overflow">testFile.pdf</td>
+          <td class="center-text">0002</td>
+          <td class="center-text capitalize"></td>
+          <td class="center-text">01-29-2024</td>
+          <td class="center-text">Ready for Printing</td>
+        </tr>
+        <tr>
+          <td class="text-overflow">testFile.pdf</td>
+          <td class="center-text">0001</td>
+          <td class="center-text capitalize">long</td>
+          <td class="center-text">01-29-2024</td>
+          <td class="center-text">Ready for Printing</td>
+        </tr>
+        <tr>
+          <td class="text-overflow">HISTORY 2</td>
+          <td class="center-text">0019</td>
+          <td class="center-text capitalize">short</td>
+          <td class="center-text">01-29-2024</td>
+          <td class="center-text">Ready for Printing</td>
+        </tr>
+      </tbody>
+    </table>
+  </div> -->
+<!-- LOGIN -->
+<!-- <header class="header header__login">
+  <img
+    class="header__login_logo"
+    src="./src/img/Pay-U-Print-logo.png"
+    alt="Pay-U-Print Logo"
+  />
+</header>
+<main class="main container">
+  <form class="signIn showform">
+    <div class="form__textheader">Sign in your account</div>
+
+    <div class="form__textheader_error error_signIn"></div>
+    <div class="form">
+      <input
+        type="email"
+        name="email"
+        placeholder="Email address"
+        class="form__entryfield"
+        required
+      />
+      <input
+        type="password"
+        name="password"
+        placeholder="Password"
+        class="form__entryfield"
+        required
+      />
+      <div class="form__btn">
+        <button type="submit" class="form__btn_login btn-main">
+          Login
+        </button>
+        <button type="button" class="form__btn_swapform">Register</button>
+      </div>
+    </div>
+  </form>
+  <form class="signUp">
+    <div class="form__textheader">Create your account</div>
+    <div class="form__textheader_error error_signUp"></div>
+
+    <div class="form">
+      <input
+        type="email"
+        name="email"
+        placeholder="Email address"
+        class="form__entryfield"
+        required
+      />
+      <input
+        type="password"
+        name="password"
+        placeholder="Password"
+        class="form__entryfield"
+        required
+      />
+      <input
+        type="tel"
+        name="secretpin"
+        placeholder="Secret 5-digit Pin Code"
+        class="form__entryfield"
+        pattern="\d{5}"
+        minlength="5"
+        maxlength="5"
+        required
+      />
+      <div class="form__btn">
+        <button type="submit" class="form__btn_register btn-main">
+          Register
+        </button>
+        <button type="button" class="form__btn_swapform">Login</button>
+      </div>
+    </div>
+  </form>
+  <div class="disclaimer">
+    <p class="disclaimer__text">
+      Disclaimer: By using our services, you agree to provide accurate
+      account information (email, phone number, and password) necessary for
+      file submissions. While we prioritize security, users are responsible
+      for protecting their login credentials. Users must ensure submitted
+      content complies with legal requirements, and any changes to our
+      disclaimer will be effective immediately.
+    </p>
+  </div>
+</main> -->

@@ -1,0 +1,16 @@
+@media screen and (min-width: 700px) {
+  html {
+    /* 9px */
+    font-size: 70%;
+  }
+  .priceTable {
+    font-size: 1.8rem;
+  }
+  .header {
+    display: flex;
+    flex-direction: row;
+  }
+  .panel_user {
+    padding: 0 2rem;
+  }
+}
