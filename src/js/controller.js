@@ -47,8 +47,8 @@ class PrinterAnalytics {
       .map(
         (doc) => `
     <tr>
-    <td class="time">${doc.timestamp}</td>
-    <td class="category">₱${doc.category}</td>
+    <td class="time">${this.formatTimeStamp(doc.timestamp)}</td>
+    <td class="category">${doc.category}</td>
     <td class="issue">${doc.issue}</td>
     </tr>
     `
