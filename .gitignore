@@ -1,2 +1,7 @@
 node_modules
-
+dist
+.parcel-cache
+index copy.html
+test1.html
+# Local Netlify folder
+.netlify

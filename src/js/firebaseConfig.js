@@ -78,6 +78,20 @@ async function newUserDB(user) {
       },
       { merge: true }
     );
+
+    await setDoc(
+      doc(db, "analytics", "printForms-1"),
+      {
+        paperType: "short",
+        page: 2,
+        colored: "original",
+        price: 5,
+        status: "Paid",
+        timestamp: timestampUpload,
+        printedTimestamp: serverTimestamp(), //new
+      },
+      { merge: true }
+    );
   } catch (e) {
     throw e;
   }
@@ -108,24 +122,6 @@ async function getUserDocs(uid) {
 }
 async function getPrinterConfig(uid) {
   try {
-    // await setDoc(
-    //   doc(db, "PrintConfig", "printer1"),
-    //   {
-    //     priceShort: 2,
-    //     stockShort: 250,
-    //     printableColored: 6000,
-    //     stockLong: 250,
-    //     priceA4: 6,
-    //     colorPercentageLow: 5,
-    //     priceLong: 4,
-    //     uploadLimitBytes: 25000000,
-    //     printableBlack: 7000,
-    //     stockA4: 250,
-    //     colorPercentageHigh: 10,
-    //     colorPercentageThreshold: 10,
-    //   },
-    //   { merge: true }
-    // );
     const docRef = doc(db, "PrintConfig", uid);
     const getdoc = await getDoc(docRef);
     return getdoc.data();
@@ -133,7 +129,189 @@ async function getPrinterConfig(uid) {
     throw e;
   }
 }
+async function getAllAnalyticsForms() {
+  try {
+    const q = query(collection(db, "analytics"), orderBy("timestamp", "desc"));
+    const snapshot = await getDocs(q);
+    // Set the "capital" field of the city 'DC'
+
+    const printFormDocs = snapshot.docs.map((doc) => ({
+      filepincode: doc.id,
+      fileUrl: doc.data().fileURL,
+      paperType: doc.data().paperType,
+      page: doc.data().page,
+      colored: doc.data().colorOption,
+      price: doc.data().price,
+      status: doc.data().status,
+      timestamp: doc.data().timestamp,
+    }));
+    return printFormDocs;
+  } catch (e) {
+    throw e;
+  }
+}
+async function updatePropertyInAllDocs() {
+  try {
+    // const allPrintforms = await getAllPrintForms();
+    const q = query(collection(db, "printForms"), orderBy("timestamp", "desc"));
+
+    const snapshot = await getDocs(q);
+    for (const docz of snapshot.docs) {
+      console.log(docz.id);
+      const docRef = doc(db, "printForms", docz.id);
+
+      await runTransaction(db, async (transaction) => {
+        const sfDoc = await transaction.get(docRef);
+        if (!sfDoc.exists()) {
+          throw "Document does not exist!";
+        }
+        transaction.update(docRef, { status: "Paid" });
+      });
+      console.log("Transaction successfully committed!");
+    }
+  } catch (e) {
+    throw e;
+  }
+}
+
+//cheat code data
+async function addDataAnalytics() {
+  for (const docu of myData) {
+    await setDoc(doc(db, "analytics", docu.id), {
+      paperType: docu.paperType,
+      page: docu.page,
+      colorOption: docu.colorOption,
+      price: docu.price,
+      timestamp: docu.timestamp,
+      printedTimestamp: docu.printedTimestamp, //new
+    });
+    console.log("UPDATED DATA IN ANALYTICS!");
+  }
+}
+// const myData = [
+//   {
+//     id: "order-1",
+//     paperType: "short",
+//     page: 2,
+//     colored: "original",
+//     price: 5,
+//     status: "Paid",
+//     timestamp: new Date("2024-06-01T15:00:00"),
+//     printedTimestamp: new Date("2024-06-01"), //new
+//   },
+//   {
+//     id: "order-2",
+//     paperType: "short",
+//     page: 2,
+//     colored: "original",
+//     price: 5,
+//     status: "Paid",
+//     timestamp: new Date("2024-06-01"),
+//     printedTimestamp: new Date("2024-06-01"), //new
+//   },
+//   {
+//     id: "order-3",
+//     paperType: "short",
+//     page: 2,
+//     colored: "original",
+//     price: 5,
+//     status: "Paid",
+//     timestamp: new Date("2024-06-01"),
+//     printedTimestamp: new Date("2024-06-01"), //new
+//   },
+// ];
+const myData = [];
+
+function loop100times() {
+  // Create 100 additional orders with random variations
+  for (let i = 1; i <= 126; i++) {
+    const initialTimestamp = getRandomTimestamp();
+    const order = {
+      id: `order-${i}`,
+      paperType: ["short", "long", "a4"][Math.floor(Math.random() * 3)], // Randomly choose paperType
+      page: Math.floor(Math.random() * 7) + 1, // Randomly choose page between 1 and 5
+      colorOption: ["original", "photo", "docs", "grayscale"][
+        Math.floor(Math.random() * 4)
+      ], // Randomly choose colored
+      paperType: ["short", "long", "a4"][Math.floor(Math.random() * 3)], // Randomly choose paper
+      // Randomly generate timestamp between June 1st, 10:00 AM and June 5th, 5:00 PM
+      timestamp: initialTimestamp,
+      // Randomly generate printedTimestamp between 3 and 7 minutes after the timestamp
+      printedTimestamp: getPrintedTimestamp(initialTimestamp),
+    };
+    order.price = 5 + 2 * order.page; // Calculate price based on page count
+    myData.push(order);
+  }
+  console.log(myData);
+  return myData;
+}
+function getRandomTimestamp() {
+  // Generate a random date between June 1st and June 5th, 2024
+  const days = [1, 3, 4, 5, 6];
+  const randomDay = days[Math.floor(Math.random() * days.length)];
+  const randomDate = new Date(`2024-06-0${randomDay}T00:00:00Z`);
+
+  // Convert to seconds since Unix epoch
+  const seconds = Math.floor(randomDate.getTime() / 1000);
+  // Nanoseconds part is 0 since we are not including milliseconds
+  const nanoseconds = 0;
+
+  return { seconds, nanoseconds };
+}
+function getPrintedTimestamp(timestamp) {
+  // Add 3-5 minutes and random seconds to the original timestamp
+  const randomMinutes = Math.floor(Math.random() * 3) + 2; // Random minutes between 3 and 5
+  const randomSeconds = Math.floor(Math.random() * 60); // Random seconds between 0 and 59
+
+  // Calculate the new timestamp
+  const printedSeconds = timestamp.seconds + randomMinutes * 60 + randomSeconds;
+
+  return { seconds: printedSeconds, nanoseconds: 0 };
+}
+async function getAllPrintForms() {
+  try {
+    const q = query(collection(db, "printForms"), orderBy("timestamp", "desc"));
+
+    const snapshot = await getDocs(q);
+    // Set the "capital" field of the city 'DC'
+
+    const printFormDocs = snapshot.docs.map((doc) => ({
+      filepincode: doc.id,
+      fileUrl: doc.data().fileURL,
+      paperType: doc.data().paperType,
+      page: doc.data().page,
+      colored: doc.data().colorOption,
+      price: doc.data().price,
+      status: doc.data().status,
+      timestamp: doc.data().timestamp,
+    }));
+    return printFormDocs;
+  } catch (e) {
+    throw e;
+  }
+}
+async function getAllIssueForms() {
+  try {
+    const snapshot = await getDocs(collection(db, "issues"));
+    console.log(snapshot.docs);
+    const issueDocs = snapshot.docs.map((doc) => ({
+      timestamp: doc.data().date,
+      category: doc.data().category,
+      issue: doc.data().issue,
+    }));
+    console.log(`IN ISSUEDOCS`);
+    console.log(issueDocs);
+    return issueDocs;
+  } catch (e) {
+    throw e;
+  }
+}
 export {
+  getAllIssueForms,
+  getAllAnalyticsForms,
+  loop100times,
+  addDataAnalytics,
+  updatePropertyInAllDocs,
   app,
   query,
   orderBy,
@@ -144,6 +322,8 @@ export {
   getDocs,
   getUserProfile,
   getUserDocs,
+  getAllPrintForms,
+  getPrinterConfig,
   ref,
   addDoc,
   collection,
@@ -159,5 +339,4 @@ export {
   signOut,
   onSnapshot,
   where,
-  getPrinterConfig,
 };

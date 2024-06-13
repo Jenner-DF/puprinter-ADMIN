@@ -20,6 +20,98 @@
   </head>
   <body></body>
 </html>
+<header class="header header__login">
+  <a href="#" onclick="location.reload();">
+    <img
+      class="header__login_logo"
+      src="./img/PUPrinter_mainlogo.png"
+      alt="Pay-U-Print Logo"
+    />
+  </a>
+</header>
+<main>
+  <div class="container grid">
+    <div class="data paperStock">
+      <div class="data-title">PAPER STOCK</div>
+      <div class="data-box left top">
+        <div class="data-box-title">Short</div>
+        <div id="short"></div>
+      </div>
+      <div class="data-box right top">
+        <div class="data-box-title">Long</div>
+        <div id="long"></div>
+      </div>
+      <div class="data-box left">
+        <div class="data-box-title">A4</div>
+        <div id="a4"></div>
+      </div>
+      <div class="data-box right">
+        <div class="data-box-title">Total</div>
+        <div id="totalstocks"></div>
+      </div>
+    </div>
+
+    <div class="data paperOrders">
+      <div class="data-title">ONGOING ORDERS</div>
+      <div class="data-liveOrders">
+        <table class="liveOrders">
+          <tr>
+            <th>PIN Code</th>
+            <th>Price</th>
+            <th>File URL</th>
+          </tr>
+          <!-- <tr>
+            <td class="pincode">1571</td>
+            <td class="price">₱6</td>
+            <td class="fileUrl">
+              https://firebasestorage.googleapis.com/v0/b/puprinter-efcd0.appspot.com/o/1571%2FPUPrinter?alt=media&token=25edea92-f1ae-4b90-9060-e44e2cbf41d0
+            </td>
+          </tr> -->
+        </table>
+      </div>
+    </div>
+    <div class="data paperSales">
+      <div class="data-title">SALES GRAPH</div>
+      <div class="data-sales">
+        <canvas id="totalRevenue"></canvas>
+      </div>
+    </div>
+    <div class="data inkLevel">
+      <div class="data-title">INK LEVEL (page)</div>
+      <div class="data-box left top">
+        <div class="data-box-title">Black</div>
+        <div id="ink-Black">5234 / 6000</div>
+      </div>
+      <div class="data-box right top">
+        <div class="data-box-title">Colored</div>
+        <div id="ink-Colored">6543 / 7000</div>
+      </div>
+    </div>
+    <div class="data sizeReference">
+      <div class="data-title">SIZE PREFERENCE</div>
+      <div class="data-sales">
+        <canvas id="sizePreference"></canvas>
+      </div>
+    </div>
+    <div class="data issues">
+      <div class="data-title">REPORTED ISSUES</div>
+      <div class="data-liveIssues">
+        <table class="liveIssues">
+          <tr>
+            <th>Date</th>
+            <th>Category</th>
+            <th>Issue</th>
+          </tr>
+          <!-- <tr>
+            <td class="pincode">1571</td>
+            <td class="price">₱6</td>
+            <td class="fileUrl">Printer Malfunction not opening</td>
+          </tr> -->
+        </table>
+      </div>
+    </div>
+  </div>
+</main>
 
 <!-- <div class="admin__controls">
   <div class="admin__control">

@@ -1,8 +1,8 @@
 .canvas_container {
   text-align: center;
   border: 5px solid darken($color: $color-primary, $amount: 15);
-  max-width: 800px;
-  max-height: 100vh;
+  // max-width: 800px;
+  // max-height: 100vh;
   margin: 10px auto;
   display: flex;
   flex-direction: column;
@@ -13,7 +13,9 @@
 }
 canvas {
   border: 1px solid black;
-  margin: 0 2rem;
+  margin: 0 auto;
+  height: 100%;
+  width: 100%;
   // border: 1px solid #ccc;
   // padding: 10px;
 }
